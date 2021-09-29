@@ -4,8 +4,8 @@ import com.robots.IBot;
 
 import com.structural.IRoboAppFunction;
 
-//Implements the bridge Interface 
-//So that via this objects reference its subclasses will be managed individually
+//Implements the Interface that is designed for the bridge pattern 
+//The subclasses that extends to this class will be managed individually via this object reference
 public abstract class RobotAction implements IBot, IRoboAppFunction {
 //Template Method
 	public RobotAction() {
