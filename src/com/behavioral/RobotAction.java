@@ -1,8 +1,12 @@
 package com.behavioral;
 
-import com.robots.Irobot;
+import com.robots.IBot;
 
-public abstract class RobotAction implements Irobot {
+import com.structural.IRoboAppFunction;
+
+//Implements the bridge Interface 
+//So that via this objects reference its subclasses will be managed individually
+public abstract class RobotAction implements IBot, IRoboAppFunction {
 //Template Method
 	public RobotAction() {
 		// TODO Auto-generated constructor stub
@@ -12,21 +16,16 @@ public abstract class RobotAction implements Irobot {
 	public void doCleaning() {
 
 		leaveDock();
-		getRoomInfo();
 		analyzeEnvironment();
 		message();
 	}
 
 	public abstract void leaveDock();
 
-	public abstract void getRoomInfo();
-
 	public abstract void analyzeEnvironment();
 
 	public void message() {
 		System.out.println("Started to clean");
 	}
-
-	
 
 }

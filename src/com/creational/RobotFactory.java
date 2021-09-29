@@ -1,17 +1,18 @@
 package com.creational;
 
-import com.robots.Irobot;
+import com.robots.IBot;
+
 import com.robots.MiRobot;
 import com.robots.Roborock;
 import com.robots.WindowRobot;
-import com.structural.WindowAdapter;
+
 
 public class RobotFactory {
 
 	//Factory method
-	public Irobot getRobot(RobotType type, String name, String description, int power ) {
+	public IBot getRobot(RobotType type, String name, String description, int power ) {
 		
-		Irobot irobot;
+		IBot irobot;
 		switch(type) {
 		case MIROBOT:
 			irobot = new MiRobot(name, description, power);
@@ -20,8 +21,8 @@ public class RobotFactory {
 			irobot = new Roborock(name, description, power);
 			break;
 		case WINDOWROBOT:
-			WindowRobot windowRobot = new WindowRobot(name, description, power);
-			irobot = new WindowAdapter(windowRobot);
+			irobot = new WindowRobot(name, description, power);
+
 			break;
 			
 		default:

@@ -1,40 +1,56 @@
 import com.behavioral.RobotAction;
 import com.creational.RobotFactory;
 import com.creational.RobotType;
-import com.robots.Irobot;
-
+import com.robots.IBot;
+import com.structural.RoboApp;
 
 public class Main {
 	static RobotFactory factory;
-	static Irobot action;
+	static IBot action;
 	static RobotAction robotAction;
-	
+	static RoboApp app;
+
 	public Main() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
-	factory = new RobotFactory();
-	action = factory.getRobot(RobotType.ROBOROCK, "Robito", "Clean all the surfaces", 250);
-	robotAction = (RobotAction) action;
-	getInfo(action);
-	robotAction.doCleaning();
+		factory = new RobotFactory();
+		action = factory.getRobot(RobotType.ROBOROCK, "Robito", "Mops and vacuums floors", 250);
+		robotAction = (RobotAction) action; // Downcasting
+		app = new RoboApp(robotAction);
+
+		app.power();
+		app.pauseResume();
+		app.timer();
+		app.displayStatus();
+		System.out.println("********************************");
+		action = factory.getRobot(RobotType.MIROBOT, "MiRobot", "Just vacuuming floors", 500);
+		robotAction = (RobotAction) action;
+		app = new RoboApp(robotAction);
+
+		app.power();
+		app.pauseResume();
+		app.timer();
+		app.displayStatus();
+		
+		System.out.println("********************************");
+		
+		action = factory.getRobot(RobotType.WINDOWROBOT, "WinBot", "Cleans the windows", 300);
+		robotAction = (RobotAction) action;
+		app = new RoboApp(robotAction);
+
+		app.power();
 	
-	action = factory.getRobot(RobotType.WINDOWROBOT, "Win Bot", "clean windows", 300);
-	getInfo(action);
-	
-	
+		app.displayStatus();
+		
+		
+		
+
+		
 
 	}
-	
-	public static void getInfo(Irobot ibot) {
-		Irobot bot = ibot;
-		System.out.println("***********************************");
-		System.out.println(bot.getName());
-		System.out.println(bot.getDescription());
-		System.out.println(bot.getPower());
-		System.out.println("***********************************");
-	}
 
 	
+
 }

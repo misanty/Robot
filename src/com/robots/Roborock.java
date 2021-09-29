@@ -2,11 +2,14 @@ package com.robots;
 
 import com.behavioral.RobotAction;
 
-public class Roborock extends RobotAction{
+
+public class Roborock extends RobotAction implements Irobot {
 	//Concrete Class of Robot
 	private String name;
 	private String description;
 	private int power;
+	private boolean on = false;
+	private int timer;
 	//Maybe add here a list of rooms?! then bind it with getRoominfo?
 	
 
@@ -36,9 +39,9 @@ public class Roborock extends RobotAction{
 	}
 
 	@Override
-	public int mopFeature() {
+	public boolean mopFeature() {
 		// TODO Auto-generated method stub
-		return 1;
+		return true;
 	}
 
 	@Override
@@ -48,16 +51,71 @@ public class Roborock extends RobotAction{
 		
 	}
 
+
+
 	@Override
-	public void getRoomInfo() {
-		// TODO Auto-generated method stub
+	public void analyzeEnvironment() {
+		System.out.println("The place is OK");
 		
 	}
 
 	@Override
-	public void analyzeEnvironment() {
-		System.out.println("It's OK");
+	public boolean isOn() {
+		// TODO Auto-generated method stub
+		return this.on;
+	}
+
+	@Override
+	public void on() {
+		on = true;
 		
 	}
+
+	@Override
+	public void off() {
+		on = false;
+		
+	}
+
+	@Override
+	public void start() {
+		on = true;
+		super.doCleaning();
+		
+		
+	}
+
+	@Override
+	public void pause() {
+		on = false;
+		
+	}
+
+	@Override
+	public void setTimer(int minute) {
+		this.timer += minute;
+		System.out.printf("I will start in %d minutes",this.timer);
+		
+	}
+	
+
+	@Override
+	public void showStatus() {
+		
+		System.out.println(this.toString());
+	}
+
+	@Override
+	public String toString() {
+		return "Roborock model I'm=" + getName() + "\n"
+				+ "my short info=" + getDescription() + "\n"
+						+ "Power="
+				+ getPower() + "\n"
+						+ "Do I have mop feature= " + (mopFeature() ? "nope" : "of course") + "\n"
+								+ "I'm currently=" + (isOn() ? "working" : "waiting for the work" );
+	}
+
+	
+	
 
 }

@@ -1,9 +1,9 @@
 package com.structural;
 
-public interface IwindowBot {
-	String getName();
-	String getDescription();
-	int getPower();
+import com.robots.IBot;
+
+public interface IwindowBot extends IBot {
+
 	int getCycle();
 
 }
